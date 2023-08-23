@@ -11,7 +11,7 @@ install_package() {
     sudo apt-get update
     sudo apt-get install -y "$1"
   else
-    echo "apt-get package manager not found. Please install Nmap, Dirb, and Amass manually."
+    echo "apt-get package manager not found. Please install Nmap, Dirb, Amass, ffuf, and wfuzz manually."
     exit 1
   fi
 }
@@ -38,6 +38,22 @@ if ! command_exists amass; then
   install_package amass
 else
   echo "Amass is already installed."
+fi
+
+# Check and install ffuf
+if ! command_exists ffuf; then
+  echo "Installing ffuf..."
+  install_package ffuf
+else
+  echo "ffuf is already installed."
+fi
+
+# Check and install wfuzz
+if ! command_exists wfuzz; then
+  echo "Installing wfuzz..."
+  install_package wfuzz
+else
+  echo "wfuzz is already installed."
 fi
 
 echo "Installation completed."
